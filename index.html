@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock, Paper, Scissors</title>
+</head>
+<body>
+    <script>
+        function computerPlay(){
+            switch (Math.floor(Math.random()*4)){
+                case 1:
+                    return "Rock";
+                    break;
+                case 2:
+                    return "Paper";
+                    break;
+                case 3:
+                    return "Scissors";
+                    break;
+                }
+            }
+
+        function capitalize(someString){
+            someString = someString.toLowerCase();
+            var firstLetter = (someString.slice(0,1));
+            return (firstLetter.toUpperCase()+someString.slice(1));
+        }
+        
+        function playRound(playerSelection, computerSelection){
+            var playerString = playerSelection.toLowerCase();
+            playerString = capitalize(playerString);            
+
+            var playerValue;
+            var computerValue;
+
+            if(playerString == "Rock"){
+                playerValue = 0;
+            }
+            else if(playerString == "Paper"){
+                playerValue = 1;
+            }
+            else{
+                playerValue = 2;
+            }
+            
+            if(computerSelection == "Rock"){
+                computerValue = 0;
+            }
+            else if(computerSelection == "Paper"){
+                computerValue = 1;
+            }
+            else{
+                computerValue = 2;
+            }
+
+            /*
+            Rock = 0
+            Paper = 1
+            Scissors = 2 
+            */
+
+            //Player is Rock, Computer is Rock
+            if(playerValue == 0 && computerValue == 0){
+                return "It's a tie! Rock and Rock!";
+            }
+            //Player is Rock, Computer is Paper
+            else if(playerValue == 0 && computerValue == 1){
+                return "You Lose! Paper beats Rock!";
+            }
+            //Player is Rock, Computer is Scissors
+            else if(playerValue == 0 && computerValue == 2){
+                return "You Win! Rock beats Scissors!";
+            }
+            //Player is Paper, Computer is Rock
+            if(playerValue == 1 && computerValue == 0){
+                return "You Win! Paper beats Rock!";
+            }
+            //Player is Paper, Computer is Paper
+            else if(playerValue == 1 && computerValue == 1){
+                return "It's a tie! Paper and Paper!";
+            }
+            //Player is Paper, Computer is Scissors
+            else if(playerValue == 1 && computerValue == 2){
+                return "You Lose! Scissors beats Paper!";
+            }
+            //Player is Scissors, Computer is Rock
+            if(playerValue == 2 && computerValue == 0){
+                return "You Lose! Rock beats Scissors!";
+            }
+            //Player is Scissors, Computer is Paper
+            else if(playerValue == 2 && computerValue == 1){
+                return "You Win! Scissors beats Paper!";
+            }
+            //Player is Scissors, Computer is Scissors
+            else if(playerValue == 2 && computerValue == 2){
+                return "It's a tie! Scissors and Scissors!";
+            }
+        }
+
+        function askPlayer(){
+            var selection = window.prompt("Let's play a game! Rock, Paper, or Scissors?", "Rock"); 
+            return selection;
+        }
+
+        function game(){
+            var i=0;
+            while (i<5){
+                var selection = askPlayer();
+                console.log(playRound(selection, computerPlay()));
+                i++;
+            }
+        }
+
+        game();
+
+    </script>
+</body>
